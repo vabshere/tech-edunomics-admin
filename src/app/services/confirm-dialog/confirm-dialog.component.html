@@ -1,0 +1,12 @@
+
+<mat-card-title>{{ title }}</mat-card-title>
+<mat-card-content>
+  <div fxLayout="column" style="margin-bottom: 20px;" [innerHTML]="data">
+  </div>
+  <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutGap="10px" fxLayoutAlign="center center">
+    <button type="button" mat-raised-button
+            (click)="dialogRef.close(true)">Yes</button>
+    <button type="button" mat-raised-button autofocus
+            (click)="dialogRef.close(false)">No</button>
+  </div>
+</mat-card-content>

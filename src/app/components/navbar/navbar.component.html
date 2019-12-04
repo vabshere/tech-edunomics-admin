@@ -1,0 +1,10 @@
+<div class="head" fxLayoutAlign="center center">Admin Portal</div>
+<button
+  class="log-out"
+  mat-button
+  *ngIf="localUserService.isAuthenticated$ | async"
+  (click)="logOut()"
+  fxLayoutAlign="center center"
+>
+  Log Out
+</button>

@@ -1,0 +1,94 @@
+<mat-card class="manage-data">
+  <mat-card-title> {{ name }} </mat-card-title>
+
+  <mat-card-content>
+    <div fxLayout="column" *ngIf="keys.length > 0">
+      <!---------- Table Heads ---------->
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        fxLayoutGap="10px"
+      >
+        <span fxFlex="" *ngFor="let key of keys; let i = index">
+          <strong>{{ key }}</strong>
+          <button mat-icon-button title="Remove" (click)="removeColumn(i)">
+            <i class="material-icons">cancel</i>
+          </button>
+        </span>
+        <span fxFlex=""> <strong>Alter Row</strong></span>
+      </div>
+
+      <!---------- Table Entries ---------->
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-around center"
+        *ngFor="let data of contentData; let i = index"
+        fxLayoutGap="10px"
+      >
+        <!---------- Each Row ---------->
+        <span fxFlex="" *ngFor="let key of keys">
+          <div [ngSwitch]="types[key]">
+            <!---------- If text type ---------->
+            <ng-container *ngSwitchCase="'text'">
+              <mat-form-field>
+                <input
+                  matInput
+                  type="text"
+                  [(ngModel)]="data[key]"
+                  (change)="this.changed = true"
+                />
+              </mat-form-field>
+            </ng-container>
+            <!---------- If boolean type ---------->
+            <ng-container *ngSwitchCase="'bool'">
+              <mat-select
+                [(ngModel)]="data[key]"
+                (change)="this.changed = true"
+              >
+                <mat-option [value]="true">Yes</mat-option>
+                <mat-option [value]="false">No</mat-option>
+              </mat-select>
+            </ng-container>
+          </div>
+        </span>
+        <span fxFlex="" class="btns">
+          <button mat-icon-button title="Insert Row" (click)="insertRow(i)">
+            <mat-icon>playlist_add</mat-icon>
+          </button>
+          <button mat-icon-button title="Delete Row" (click)="deleteRow(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button title="Move Up" (click)="moveUp(i)">
+            <mat-icon>arrow_upward</mat-icon>
+          </button>
+          <button mat-icon-button title="Move Down" (click)="moveDown(i)">
+            <mat-icon>arrow_downward</mat-icon>
+          </button>
+        </span>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <!--<div fxLayout="row" fxLayoutAlign="center center">
+        <div fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="center center" fxLayoutWrap>-->
+    <mat-form-field class="action-item">
+      <input
+        matInput
+        type="text"
+        placeholder="New Column Name"
+        [(ngModel)]="newColumn.name"
+      />
+    </mat-form-field>
+    <mat-select [(ngModel)]="newColumn.type">
+      <mat-option [value]="'text'">text/number</mat-option>
+      <mat-option [value]="'bool'">boolean</mat-option>
+    </mat-select>
+    <button mat-button title="Add Column" (click)="addColumn()">
+      Add Column
+    </button>
+    <button mat-raised-button (click)="saveData()">Save</button>
+    <!--</div>
+        <button mat-button (click)="showJSON()" *ngIf="isAdmin"> Raw JSON </button>
+      </div>-->
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,8 @@
+mat-card-title {
+  text-align: center;
+}
+
+span[fxFlex] {
+  margin-bottom: 4px;
+  margin-top: 4px;
+}

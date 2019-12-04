@@ -1,0 +1,29 @@
+.manage-data {
+  margin: 0 auto;
+  width: 90%;
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+span[fxFlex] {
+  margin-bottom: 4px;
+  margin-top: 4px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.action-item {
+  margin: 5px;
+}
+
+mat-card-content {
+  overflow-x: scroll;
+}
+
+.btns {
+  min-width: 20vw;
+}

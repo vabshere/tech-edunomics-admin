@@ -1,0 +1,64 @@
+<div class="header">
+  <mat-form-field>
+    <input
+      matInput
+      autofocus
+      (keyup)="applyFilter($event.target.value)"
+      placeholder="Search"
+    />
+  </mat-form-field>
+</div>
+<!-- <a mat-raised-button style="background-color: lightgreen" href="https://fb.antaragni.in/ragni/upload" target="_blank">Upload changes to website</a> -->
+<mat-table #table [dataSource]="dataSource">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-button [routerLink]="['/manage', element.name]">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-button (click)="deleteContent(element.name)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="sno">
+    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+    <mat-cell *matCellDef="let i = index"> {{ i + 1 }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    *matHeaderRowDef="['sno', 'name', 'edit', 'delete']"
+  ></mat-header-row>
+  <mat-row
+    *matRowDef="let row; columns: ['sno', 'name', 'edit', 'delete']"
+  ></mat-row>
+</mat-table>
+<input
+  matInput
+  type="text"
+  placeholder="Enter new content name"
+  class="inputbox"
+  (keyup.enter)="addContent(newContent.value)"
+  #newContent
+/>
+<button
+  mat-raised-button
+  title="Add"
+  class="Addbutton"
+  (click)="addContent(newContent.value)"
+  color="primary"
+>
+  Add Content
+</button>

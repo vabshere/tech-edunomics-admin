@@ -1,0 +1,11 @@
+.inputbox {
+    position: absolute;
+    right: 10%;
+    height: 4%;
+    width: 13%;
+}
+
+.Addbutton {
+    position: absolute;
+    right: 2%;
+}

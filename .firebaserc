@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "edunomics-ae376": {
+      "hosting": {
+        "backend": [
+          "edunomics-ae376"
+        ]
+      }
+    }
+  }
+}
